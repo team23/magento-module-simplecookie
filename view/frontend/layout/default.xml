@@ -1,0 +1,15 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main">
+            <block class="Team23\SimpleCookie\Block\Widget\CookieConfiguration" name="t23_simple_cookie">
+                <arguments>
+                    <argument name="custom_title" xsi:type="boolean">false</argument>
+                    <argument name="custom_message" xsi:type="boolean">false</argument>
+                    <argument name="auto_open" xsi:type="boolean">true</argument>
+                    <argument name="clickable" xsi:type="boolean">false</argument>
+                    <argument name="show_link" xsi:type="boolean">false</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

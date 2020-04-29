@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="team23" translate="label" sortOrder="23000">
+            <label>TEAM23</label>
+        </tab>
+        <section id="simple_cookie_general" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>TEAM23 SimpleCookie</label>
+            <tab>team23</tab>
+            <resource>Team23_SimpleCookie::configuration</resource>
+            <group id="simple_cookie_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="module_state" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lifetime" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Lifetime (in days)</label>
+                    <comment>The Lifetime of the cookie that will be set for saving the visitors settings.</comment>
+                    <validate>validate-not-negative-number</validate>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Title</label>
+                    <comment>Default title of the Cookie Notice</comment>
+                </field>
+                <field id="message" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Message</label>
+                    <comment>Default Message of the Cookie Notice</comment>
+                </field>
+                <field id="information_essential" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Information - 'Essential'</label>
+                    <comment>Explanation of 'Essential' Visitor/Cookie data</comment>
+                </field>
+                <field id="information_marketing" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Information - 'Marketing'</label>
+                    <comment>Explanation of 'Marketing' Visitor/Cookie data</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

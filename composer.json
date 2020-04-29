@@ -1,0 +1,32 @@
+{
+    "name": "team23/module-simplecookie",
+    "description": "TEAM23 SimpleCookie",
+    "homepage": "https://www.team23.de/",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Emanuel Jacob",
+            "email": "info@slashplus.de",
+            "homepage": "https://www.slashplus.de/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~7.2"
+    },
+    "keywords": [
+        "Magento 2",
+        "GDPR",
+        "Cookie"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Team23\\SimpleCookie\\": ""
+        }
+    }
+}

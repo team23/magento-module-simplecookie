@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Team23\SimpleCookie\Block\Widget\CookieOptOut" id="team23_simplecookie_cookieoptout">
+        <label>SimpleCookie Opt Out</label>
+        <description>Add cookie opt out link for all SimpleCookie settings</description>
+        <parameters>
+            <parameter name="link_title" sort_order="10" visible="true" required="true" xsi:type="text">
+                <label>Link Title</label>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget class="Team23\SimpleCookie\Block\Widget\CookieConfiguration" id="team23_simplecookie_cookieconfiguration">
+        <label>SimpleCookie Cookie Configuration</label>
+        <description>Add link for cookie (re-)configuration of all SimpleCookie settings</description>
+        <parameters>
+            <parameter name="custom_title" xsi:type="select" visible="true" required="true" sort_order="10">
+                <label translate="true">Custom configuration title</label>
+                <options>
+                    <option name="no" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true" required="true" sort_order="20">
+                <label>Configuration Title</label>
+                <depends>
+                    <parameter name="custom_title" value="1"/>
+                </depends>
+            </parameter>
+            <parameter name="custom_message" xsi:type="select" visible="true" required="true" sort_order="30">
+                <label translate="true">Custom configuration message</label>
+                <options>
+                    <option name="no" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="message" xsi:type="text" visible="true" required="true" sort_order="40">
+                <label>Configuration message</label>
+                <depends>
+                    <parameter name="custom_message" value="1"/>
+                </depends>
+            </parameter>
+            <parameter name="auto_open" xsi:type="select" visible="true" required="true" sort_order="50">
+                <label translate="true">Auto-Open modal</label>
+                <options>
+                    <option name="no" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="clickable" xsi:type="select" visible="true" required="true" sort_order="60">
+                <label translate="true">Clickable overlay</label>
+                <options>
+                    <option name="no" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="show_link" xsi:type="select" visible="false" required="true" sort_order="70">
+                <label translate="true">Show link</label>
+                <options>
+                    <option name="no" value="0">
+                        <label>No</label>
+                    </option>
+                    <option name="yes" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="link_title" xsi:type="text" visible="true" required="true" sort_order="80">
+                <label>Link title</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

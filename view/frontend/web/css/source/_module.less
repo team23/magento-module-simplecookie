@@ -1,0 +1,307 @@
+
+& when (@media-common = true) {
+    .sc-cookie-notice {
+        overflow-y: scroll;
+
+        .modal-inner-wrap {
+            width: 40%;
+        }
+
+        .action-close {
+            display: none;
+        }
+
+        .modal-header {
+            .modal-title {
+                font-size: 24px;
+                text-align: center;
+                padding: @indent__s;
+                border-bottom: 0;
+            }
+        }
+
+        .modal-content {
+            overflow: hidden;
+
+            .sc-cookie-notice {
+                .css-display-flex(column, nowrap);
+                height: 100%;
+            }
+
+            .avm-content {
+                overflow-y: scroll;
+            }
+
+            .avm-toggle {
+                display: none;
+
+                &:checked {
+                    & ~ .avm-content {
+                        display: none;
+                    }
+
+                    & + label {
+                        &:after {
+                            content: @icon-down;
+                        }
+                    }
+                }
+
+                & + label {
+                    .lib-icon-font(
+                        @_icon-font-position: after,
+                        @icon-up,
+                        @_icon-font-size: @checkout-sidebar-shipping-information-edit-icon__font-size,
+                        @_icon-font-line-height: @checkout-sidebar-shipping-information-edit-icon__line-height,
+                        @_icon-font-color: @color-white,
+                        @_icon-font-color-hover:  @color-white,
+                        @_icon-font-color-active:  @color-white,
+                        @_icon-font-margin: 0 0 0 10px
+                    );
+                }
+            }
+
+            label[for="avm-toggle"] {
+                cursor: pointer;
+                display: block;
+                margin: 20px 0;
+                // remove selection highlighting
+                -webkit-touch-callout: none; /* iOS Safari */
+                -webkit-user-select: none; /* Safari */
+                -khtml-user-select: none; /* Konqueror HTML */
+                -moz-user-select: none; /* Old versions of Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .modal-footer {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            -ms-flex-wrap: wrap;
+            flex-direction: row;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            button {
+                & + button {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        // Switcher Element
+        // ----------------------------------------------------------
+        // Color settings
+        @slider-background-on: #89c12d;
+        @slider-background-on-disabled: lighten(@slider-background-on, 30%);
+        @slider-background-off: #dedede;
+
+        @switch-background-on: #fff;
+        @switch-background-off: @switch-background-on;
+        @switch-border-width: 1px;
+        @switch-border-color: transparent;
+
+        @slider-width: 48px; // should be even when divided by 2 (in order to make exact pixel coordinates)
+        @switch-width: @slider-width/2;
+        @slider-padding: 0;
+
+        // One single switcher row with switcher & label
+        .cn-grid {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-flex-flow: row nowrap;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            -ms-flex-wrap: nowrap;
+            flex-direction: row;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            & > *:not(:first-child) {
+                margin-left: 20px;
+            }
+
+            &.cn-space-between {
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+            }
+        }
+
+        .cn-rows {
+            & > *:not(:last-child) {
+                margin-bottom: 20px;
+            }
+        }
+
+        // The complete switcher containing the slider (bg), the toggle (invisible checkbox) & the round switch
+        .cn-switcher {
+            position: relative;
+            display: block;
+            flex-direction: row;
+            width: @slider-width;
+            height: @slider-width/2;
+
+            .cn-toggle {
+                display: none;
+
+                & + .cn-slider:before {
+                    -webkit-transform: translate(0, -50%);
+                    -ms-transform: translate(0, -50%);
+                    transform: translate(0, -50%);
+                }
+
+                // Active switcher
+                &:checked {
+                    & + .cn-slider {
+                        background-color: @slider-background-on;
+
+                        &:before {
+                            -webkit-transform: translate(@slider-width - @switch-width - 2 * @slider-padding, -50%);
+                            -ms-transform: translate(@slider-width - @switch-width - 2 * @slider-padding, -50%);
+                            transform: translate(@slider-width - @switch-width - 2 * @slider-padding, -50%);
+                            background-color: @switch-background-on;
+                        }
+                    }
+
+                    // Disabled switcher
+                    &:disabled + .cn-slider {
+                        background-color: @slider-background-on-disabled;
+                    }
+                }
+            }
+
+            // The sliding background of the switcher
+            .cn-slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: @slider-background-off;
+                -webkit-transition: .4s;
+                transition: .4s;
+                border-radius: 500px;
+
+                // the round switch element of the switcher
+                &:before {
+                    position: absolute;
+                    content: "";
+                    display: block;
+                    border: @switch-border-width solid @switch-border-color;
+                    box-sizing: border-box;
+                    height: @switch-width;
+                    width: @switch-width;
+                    left: @slider-padding;
+                    top: 50%;
+                    background-color: @switch-background-off;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                    border-radius: 500px;
+                    -moz-background-clip: padding;
+                    -webkit-background-clip: padding;
+                    background-clip: padding-box;
+                }
+            }
+        }
+
+        .switcher-label {
+            display: block;
+        }
+
+        .cn-details-toggle {
+            display: none;
+
+            &:checked {
+                & ~ .cn-details {
+                    display: none;
+                }
+
+                & + .cn-details-label {
+                    &:after {
+                        content: @icon-down;
+                    }
+                }
+            }
+
+            & + .cn-details-label {
+                .lib-icon-font(
+                    @_icon-font-position: after,
+                    @icon-up,
+                    @_icon-font-size: false,
+                    @_icon-font-line-height: @checkout-sidebar-shipping-information-edit-icon__line-height,
+                    @_icon-font-margin: 0 0 0 10px
+                );
+                display: block; // overrides the mixins inline-block
+            }
+        }
+
+        .cn-details-label {
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-align: right;
+            color: #9D9D9D;
+            // remove selection highlighting
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .cn-details {
+            margin-top: 10px;
+            font-size: 1.2rem;;
+        }
+    }
+}
+
+//
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    // decrease height a little bit on mobile devices, if cookie notice is shown, so they dont overlap
+    .cookie-consent ~ * > .sc-cookie-notice.modal-popup {
+        height: 60vh;
+    }
+
+    .sc-cookie-notice {
+        &.modal-popup.modal-slide {
+            left: 0;
+
+            .modal-inner-wrap {
+                //background: @color-medium-grey;
+                //color: @color-gray-light1;
+            }
+        }
+
+        .modal-content {
+            padding-bottom: 0;
+        }
+    }
+}
+
+
+
+
+
+

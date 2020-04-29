@@ -1,0 +1,74 @@
+<?php
+/**
+ * @var \Team23\SimpleCookie\Block\Widget\CookieConfiguration $block
+ */
+
+// Because this widget block might become output multiple times in one single page, we have to make sure
+// we have an unique id whenever we use HTML id fields. This is also necessary to address the correct modal.
+$widgetId = $block->getWidgetId();
+?>
+<div style="display:none" data-id="<?= $widgetId ?>" class="sc-cookie-notice"
+     data-mage-init='{"simpleCookieModal": <?= $block->getSettingsJson(); ?>}'>
+    <div class="cn-message cn-rows">
+        <div class="cn-intro">
+            <?= $block->getMessage(); ?>
+        </div>
+        <?php // Essential ?>
+        <div class="cn-row">
+            <div class="cn-grid cn-space-between">
+                <div class="cn-switcher">
+                    <label>
+                        <input id="cn-switcher-essential-<?= $widgetId; ?>" name="group-essential"
+                               class="cn-toggle" type="checkbox" checked disabled/>
+                        <span class="cn-slider"></span>
+                    </label>
+                </div>
+                <label class="switcher-label" for="cn-switcher-essential-<?= $widgetId; ?>">
+                    <?= __('Essential'); ?>
+                </label>
+            </div>
+            <?php if ($details = $block->getInformationEssential()): ?>
+                <input id="cn-details-essential-<?= $widgetId; ?>" name=cn-details-essential" type="checkbox"
+                       class="cn-details-toggle" checked="false"/>
+                <label class="cn-details-label" for="cn-details-essential-<?= $widgetId; ?>">
+                    <?= __('More Information'); ?>
+                </label>
+                <div class="cn-details">
+                    <?= $details; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php // Marketing ?>
+        <div class="cn-row">
+            <div class="cn-grid cn-space-between">
+                <div class="cn-switcher">
+                    <label>
+                        <input id="cn-switcher-marketing-<?= $widgetId; ?>" name="group-marketing"
+                               class="cn-toggle cn-selectable" type="checkbox"/>
+                        <span class="cn-slider"></span>
+                    </label>
+                </div>
+                <label class="switcher-label" for="cn-switcher-marketing-<?= $widgetId; ?>">
+                    <?= __('Marketing'); ?>
+                </label>
+            </div>
+            <?php if ($details = $block->getInformationMarketing()): ?>
+                <input id="cn-details-marketing-<?= $widgetId; ?>" name="cn-details-marketing" type="checkbox"
+                       class="cn-details-toggle" checked="false"/>
+                <label class="cn-details-label" for="cn-details-marketing-<?= $widgetId; ?>">
+                    <?= __('More Information'); ?>
+                </label>
+                <div class="cn-details">
+                    <?= $details; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<?php if ($block->isShowLink()): ?>
+    <? // <span> tag for seo purposes ?>
+    <span class="action cn-opener" data-trigger="<?= $widgetId ?>">
+        <?= $block->getLinkTitle(); ?>
+    </span>
+<?php endif; ?>

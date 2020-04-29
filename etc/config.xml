@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <simple_cookie_general>
+            <simple_cookie_settings>
+                <module_state>1</module_state>
+                <lifetime>30</lifetime>
+                <title>This website uses cookies</title>
+                <message><![CDATA[This website uses cookies. A cookie is a small text file stored on your computer or mobile device and retrieved from there on subsequent visits.
+                By continuing to use our site, you are agreeing to our use of at least essential cookies.
+                More information can be found in our  <a href="/privacy/">Privacy Policy.</a>]]>
+                </message>
+                <information_essential>All cookies that are essential for the general use and behaviour of our shop.</information_essential>
+                <information_marketing>Processing anonymized information for marketing purposes containing the use of 'Google Analytics'.</information_marketing>
+            </simple_cookie_settings>
+        </simple_cookie_general>
+    </default>
+</config>
