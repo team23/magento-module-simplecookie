@@ -2,8 +2,11 @@
 
 namespace Team23\SimpleCookie\Block\Widget;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
+use Team23\SimpleCookie\Model\Config;
 
 /**
  * Class CookieConfiguration
@@ -18,33 +21,45 @@ class CookieConfiguration extends Template implements BlockInterface
     protected $_template = "widget/cookie-configuration.phtml";
 
     /**
-     * @var \Team23\SimpleCookie\Model\Config
+     * @var Config
      */
-    protected $config;
+    protected Config $config;
+
     /**
      * @var string
      */
-    protected $widgetId;
+    protected string $widgetId;
+
     /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
+     * @var SerializerInterface
      */
-    protected $serializer;
+    protected SerializerInterface $serializer;
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    private ScopeConfigInterface $scopeConfig;
+
+    /**
+     * @var string
+     */
+    private string $storeScope;
 
     /**
      * CookieConfiguration constructor.
      *
      * @param Template\Context $context
      * @param array $data
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Team23\SimpleCookie\Model\Config $config
-     * @param \Magento\Framework\Serialize\SerializerInterface $serializer
+     * @param ScopeConfigInterface $scopeConfig
+     * @param Config $config
+     * @param SerializerInterface $serializer
      */
     public function __construct(
         Template\Context $context,
-        array $data = [],
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Team23\SimpleCookie\Model\Config $config,
-        \Magento\Framework\Serialize\SerializerInterface $serializer
+        ScopeConfigInterface $scopeConfig,
+        Config $config,
+        SerializerInterface $serializer,
+        array $data = []
     ) {
         parent::__construct($context, $data);
         $this->config = $config;
@@ -58,7 +73,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         if ((bool)($this->getData('custom_title'))) {
             return $this->escapeHtml($this->getData('title'));
@@ -72,7 +87,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         if ((bool)($this->getData('custom_message'))) {
             return $this->escapeHtml($this->getData('message'));
@@ -86,7 +101,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getInformationEssential()
+    public function getInformationEssential(): string
     {
         return $this->config->getSetting('information_essential');
     }
@@ -96,7 +111,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getInformationMarketing()
+    public function getInformationMarketing(): string
     {
         return $this->config->getSetting('information_marketing');
     }
@@ -106,7 +121,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return int
      */
-    public function getCookieLifetime()
+    public function getCookieLifetime(): int
     {
         return (int)$this->config->getSetting('lifetime') ?: 30;
     }
@@ -116,20 +131,19 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return bool
      */
-    public function isAutoOpen()
+    public function isAutoOpen(): bool
     {
         return (bool)($this->getData('auto_open'));
     }
 
     /**
-     * Get clickabl ewidget attribute value
+     * Get clickable widget attribute value
      *
      * @return bool
      */
-    public function isClickable()
+    public function isClickable(): bool
     {
         return (bool)($this->getData('clickable'));
-
     }
 
     /**
@@ -137,7 +151,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return bool
      */
-    public function isShowLink()
+    public function isShowLink(): bool
     {
         return (bool)($this->getData('show_link'));
     }
@@ -147,7 +161,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getLinkTitle()
+    public function getLinkTitle(): string
     {
         return $this->escapeHtml($this->getData('link_title'));
     }
@@ -157,7 +171,7 @@ class CookieConfiguration extends Template implements BlockInterface
      *
      * @return false|string
      */
-    public function getSettingsJson()
+    public function getSettingsJson(): bool|string
     {
         $settings = [
             'title' => $this->getTitle(),
@@ -179,15 +193,13 @@ class CookieConfiguration extends Template implements BlockInterface
      * Returns a unique (widget) id for each instance of the block class.
      *
      * This must be done in order to allow outputting the widgets html and modal multiple times
-     * in one single page. If we didn't do this, multiple modals would be interfering & dom id's weren't unique.
+     * in one single page. If we didn't do this, multiple modals would be interfering & dom IDs weren't unique.
      *
      * @return string
      */
-    public function getWidgetId()
+    public function getWidgetId(): string
     {
-        if ($this->widgetId === null) {
-            $this->widgetId = uniqid('', true);
-        }
+        $this->widgetId = uniqid('', true);
 
         return $this->widgetId;
     }

@@ -4,7 +4,7 @@
     "homepage": "https://www.team23.de/",
     "type": "magento2-module",
     "license": "GPL-3.0",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "Emanuel Jacob",
@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "~7.2"
+        "php": "~7.4|~8.1"
     },
     "keywords": [
         "Magento 2",

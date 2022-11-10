@@ -2,6 +2,8 @@
 
 namespace Team23\SimpleCookie\Model;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
+
 /**
  * Class Config
  *
@@ -15,21 +17,22 @@ class Config
     const SIMPLE_COOKIE_SETTINGS = 'simple_cookie_general/simple_cookie_settings/';
 
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected ScopeConfigInterface $scopeConfig;
+
     /**
      * @var string
      */
-    protected $storeScope;
+    protected string $storeScope;
 
     /**
      * Config constructor.
      *
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
@@ -41,7 +44,7 @@ class Config
      * @param string $setting
      * @return mixed|string
      */
-    public function getSetting($setting = '')
+    public function getSetting(string $setting = ''): mixed
     {
         return $this->scopeConfig->getValue(self::SIMPLE_COOKIE_SETTINGS . $setting, $this->storeScope) ?? '';
     }
@@ -51,7 +54,7 @@ class Config
      *
      * @return bool
      */
-    public function isModuleEnabled()
+    public function isModuleEnabled(): bool
     {
         return (bool)$this->getSetting('module_state');
     }

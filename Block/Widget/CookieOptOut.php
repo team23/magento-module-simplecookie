@@ -5,7 +5,6 @@ namespace Team23\SimpleCookie\Block\Widget;
 use Magento\Framework\View\Element\Template;
 use Magento\Widget\Block\BlockInterface;
 
-
 /**
  * Class CookieOptOut
  *
@@ -20,7 +19,7 @@ class CookieOptOut extends Template implements BlockInterface
      *
      * @return string
      */
-    public function getLinkTitle()
+    public function getLinkTitle(): string
     {
         return $this->escapeHtml($this->getData('link_title'));
     }
