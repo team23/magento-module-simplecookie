@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'jquery/jquery.cookie',
+    'js-cookie/cookie-wrapper',
     'underscore',
     'Magento_Ui/js/modal/modal',
     'mage/translate',
@@ -115,9 +115,13 @@ define([
          * @private
          */
         _getCookieInformation: function () {
-            let cookie = JSON.parse($.cookie(this.options.cookieName));
+            let cookie = $.cookie(this.options.cookieName);
 
-            return cookie || {accepted: false, selection: []};
+            if (typeof cookie === 'undefined') {
+                return {accepted: false, selection: []};
+            } else {
+                return JSON.parse(cookie);
+            }
         },
         /**
          * @private
